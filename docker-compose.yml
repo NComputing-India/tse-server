@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      PORT: ${PORT}
+      DB_URL: ${DB_URL}
+      username_NCIndia: ${username_NCIndia}
+      password_NCIndia: ${password_NCIndia}

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      username_NCIndia: test
+      password_NCIndia: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start containers
+        run: docker compose up -d --build
+
+      - name: Wait
+        run: sleep 10
+
+      - name: Health check
+        run: curl -sS http://localhost:1951/health
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down -v
