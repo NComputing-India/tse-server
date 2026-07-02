@@ -12,8 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      username_NCIndia: test
-      password_NCIndia: test
+      PORT: ${{ secrets.PORT }}
+      DB_URL: ${{ secrets.DB_URL }}
+      username_NCIndia: ${{ secrets.username_NCIndia }}
+      password_NCIndia: ${{ secrets.password_NCIndia }}
 
     steps:
       - name: Checkout
